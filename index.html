@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: grid;
+        place-items: center;
+        height: 90vh;
+    }
+</style>
+<body>
+    <h2 id="tobechanged">Loading. . .</h2>
+    <script>
+    let count = 0;
+    let interval = setInterval(change,1200);
+    function change(){
+        let changed = document.getElementById("tobechanged");
+        count++;
+        changed.innerText = count;
+       if (count === 5) {
+    changed.innerText = "You know what's coming...";
+}
+else if (count === 7) {
+    changed.innerText = "Thala stole your credit here too :(";
+    document.body.style.backgroundColor = "yellow";
+    clearInterval(interval); 
+}
+    }
+</script>
+</body>
+
+</html>
