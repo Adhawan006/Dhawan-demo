@@ -77,7 +77,7 @@ function start() {
 
 function change() {
     let changed = document.getElementById("tobechanged");
-    count++;
+    count++;        
     changed.innerText = count;
 
     if (count === 5) {
@@ -85,7 +85,7 @@ function change() {
     }
 
     else if (count === 7) {
-        changed.innerText = "Thala stole your credit here too 😄";
+        changed.innerText = "Thala stole your credit here too :(( ";
         document.body.style.backgroundColor = "yellow";
         clearInterval(interval);
 
