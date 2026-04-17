@@ -44,6 +44,12 @@ function start() {
     document.getElementById("tobechanged").innerText = "Loading...";
     document.body.style.backgroundColor = "white";
 
+    // 🔊 Unlock audio (important)
+    audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+    }).catch(() => {});
+
     interval = setInterval(change, 1200);
 }
 
@@ -63,9 +69,7 @@ function change() {
 
         // 🔊 Play audio
         audio.currentTime = 0;
-        audio.play().catch(function(err) {
-            console.log("Audio blocked:", err);
-        });
+        audio.play();
 
         // 🖼️ Add image
         let img = document.createElement("img");
