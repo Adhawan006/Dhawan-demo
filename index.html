@@ -1,36 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    body{
-        display: grid;
-        place-items: center;
-        height: 90vh;
-    }
-</style>
-<body>
-    <h2 id="tobechanged">Loading. . .</h2>
-    <script>
-    let count = 0;
-    let interval = setInterval(change,1200);
-    function change(){
-        let changed = document.getElementById("tobechanged");
-        count++;
-        changed.innerText = count;
-       if (count === 5) {
-    changed.innerText = "You know what's coming...";
-}
-else if (count === 7) {
-    changed.innerText = "Thala stole your credit here too :(";
-    document.body.style.backgroundColor = "yellow";
-    clearInterval(interval); 
-}
-    }
-</script>
-</body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Async Fun</title>
 
+<style>
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+img {
+    margin-top: 20px;
+    width: 250px;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="start()">Start</button>
+<h2 id="tobechanged">Click Start...</h2>
+
+<script>
+let count = 0;
+let interval;
+let audio = new Audio("audio.mp3");
+
+function start() {
+    count = 0;
+    document.getElementById("tobechanged").innerText = "Loading...";
+    document.body.style.backgroundColor = "white";
+
+    interval = setInterval(change, 1200);
+}
+
+function change() {
+    let changed = document.getElementById("tobechanged");
+    count++;
+    changed.innerText = count;
+
+    if (count === 5) {
+        changed.innerText = "You know what's coming...";
+    }
+
+    else if (count === 7) {
+        changed.innerText = "Thala stole your credit here too 😄";
+        document.body.style.backgroundColor = "yellow";
+        clearInterval(interval);
+
+        // 🔊 Play audio
+        audio.currentTime = 0;
+        audio.play().catch(function(err) {
+            console.log("Audio blocked:", err);
+        });
+
+        // 🖼️ Add image
+        let img = document.createElement("img");
+        img.src = "image.jpg";
+
+        document.body.appendChild(img);
+    }
+}
+</script>
+
+</body>
 </html>
